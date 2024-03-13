@@ -23,7 +23,7 @@ class MyInputTheme{
   InputDecorationTheme theme () => InputDecorationTheme(
     contentPadding: EdgeInsets.all(20),
     floatingLabelBehavior: FloatingLabelBehavior.always,
-    constraints: BoxConstraints(maxWidth: 200),
+    //constraints: BoxConstraints(maxWidth: 360),
 
     /// Borders
     // enabled and not showing error

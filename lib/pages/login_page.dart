@@ -1,42 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hope/custom_colors.dart';
+import 'package:hope/components/login_button.dart';
+import 'package:hope/components/login_form.dart';
+import 'package:hope/components/password_field.dart';
+import 'package:hope/components/username_field.dart';
+import 'package:hope/pages/loading_page.dart';
+import 'package:hope/pages/main_dashboard.dart';
+import '../components/login_page_svgs.dart';
+import 'package:hope/repository/login_repository.dart';
+
+
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
 
+  Future<void> onTap(BuildContext context) async {
+    var status = await LoginRepository.postData(usernameField.controller.text, passwordField.controller.text);
+
+    if (status){
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoadingPage()),
+      );
+    }
+    else {
+      ///Todo: validate the fields before connecting to the database
+      showDialog(context: context, builder: (_) => AlertDialog(
+        title: Center(child: Text('ورود نامعتبر', style: TextStyle(color: Colors.white, fontSize: 20),)),
+        backgroundColor: Colors.red,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        titlePadding: EdgeInsets.fromLTRB(40, 20, 40, 20),
+      ));
+    }
+  }
+
+  LoginPage({super.key});
+  final usernameField = UsernameField();
+  final passwordField = PasswordField();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 360,
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  helperText: '',
-                  hintText: 'نام کاربری خود را وارد کنید',
-                  labelText: 'نام کاربری',
-                  prefixIcon: Icon(Icons.person),
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 550),
+              child:Logo()
             ),
-            Container(
-              padding: EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                border: Border.all(
-                  width: 1,
-                  color: CustomColors.borderColor,
-                  style: BorderStyle.solid,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 420,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      HomeTitle(),
+                      LoginForm(usernameField: usernameField, passwordField: passwordField),
+                      LoginButton(title: 'ورود', onTap: () => onTap(context))
+                    ],
+                  ),
                 ),
-              ),
-              child: SvgPicture.asset(
-                  'assets/loginboy.svg',
-                semanticsLabel: 'student studying',
-              ),
+                SizedBox(width: 200,),
+                HomeScreenBoy(),
+              ],
             ),
           ],
         ),
@@ -44,3 +71,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+
+
