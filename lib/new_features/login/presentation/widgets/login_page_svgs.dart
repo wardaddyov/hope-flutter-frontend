@@ -1,19 +1,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-
-import '../custom_colors.dart';
-
-class Logo extends StatelessWidget {
-  const Logo({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      'assets/logo.svg',
-      semanticsLabel: 'logo',
-    );
-  }
-}
+import 'package:hope/custom_colors.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({super.key});

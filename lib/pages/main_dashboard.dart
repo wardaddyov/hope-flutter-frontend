@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hope/components/custom_button.dart';
 import 'package:hope/components/dashboard_main_container.dart';
-import 'package:hope/components/login_page_svgs.dart';
+import 'package:hope/core/widgets/logo.dart';
 import 'package:hope/pages/dashboard/student/student_dashboard.dart';
 import 'package:hope/custom_colors.dart';
 

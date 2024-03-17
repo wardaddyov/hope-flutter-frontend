@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hope/my_input_theme.dart';
+import 'package:hope/new_features/login/presentation/provider/jwt_provider.dart';
 import 'package:hope/pages/login_page.dart';
 import 'package:hope/providers/student_dashboard_index_provider.dart';
 import 'package:hope/providers/student_for_edit_provider.dart';
@@ -13,6 +14,7 @@ void main() => runApp(MultiProvider(
         ChangeNotifierProvider(create: (context) => StudentDashboardIndexProvider()),
         ChangeNotifierProvider(create: (context) => StudentListProvider()),
         ChangeNotifierProvider(create: (context) => StudentForEditProvider()),
+        ChangeNotifierProvider(create: (context) => JwtProvider()),
       ],
       child: MaterialApp(
           locale: const Locale('ar'),

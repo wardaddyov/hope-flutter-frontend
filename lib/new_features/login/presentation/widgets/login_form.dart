@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hope/components/password_field.dart';
-import 'package:hope/components/username_field.dart';
+import 'package:hope/new_features/login/presentation/widgets/password_field.dart';
+import 'package:hope/new_features/login/presentation/widgets/username_field.dart';
 
 class LoginForm extends StatelessWidget {
   LoginForm(

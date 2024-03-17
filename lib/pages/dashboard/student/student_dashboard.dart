@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope/components/custom_input_field.dart';
 import 'package:hope/components/list_item.dart';
-import 'package:hope/components/login_button.dart';
+import 'package:hope/new_features/login/presentation/widgets/login_button.dart';
 import 'package:hope/repository/student_repository.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import '../../../models/student.dart';
