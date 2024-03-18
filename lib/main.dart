@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hope/my_input_theme.dart';
-import 'package:hope/new_features/login/presentation/provider/jwt_provider.dart';
-import 'package:hope/pages/login_page.dart';
-import 'package:hope/providers/student_dashboard_index_provider.dart';
-import 'package:hope/providers/student_for_edit_provider.dart';
-import 'package:hope/providers/student_list_provider.dart';
-import 'package:hope/pages/main_dashboard.dart';
+import 'package:hope/core/themes/my_input_theme.dart';
 import 'package:provider/provider.dart';
+import 'features/login/presentation/pages/login_page.dart';
+import 'features/login/presentation/provider/jwt_provider.dart';
+import 'old/providers/student_dashboard_index_provider.dart';
+import 'old/providers/student_for_edit_provider.dart';
+import 'old/providers/student_list_provider.dart';
 
 void main() => runApp(MultiProvider(
       providers: [
@@ -32,6 +31,6 @@ void main() => runApp(MultiProvider(
             inputDecorationTheme: MyInputTheme().theme(),
           ),
           debugShowCheckedModeBanner: false,
-          home: LoginPage() //DashboardTemplate(),
+          home: LoginPage2() //DashboardTemplate(),
           ),
     ));

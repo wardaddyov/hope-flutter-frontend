@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hope/components/custom_text_box.dart';
 import 'package:hope/components/list_item.dart';
-import 'package:hope/pages/dashboard/student/student_dashboard.dart';
-import 'package:hope/custom_colors.dart';
-import 'package:hope/models/student.dart';
+import 'package:hope/core/themes/custom_colors.dart';
 
 class DashboardMainContainer extends StatelessWidget {
   DashboardMainContainer({super.key, required this.child});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hope/custom_colors.dart';
-import 'package:hope/models/student.dart';
-import 'package:hope/providers/student_dashboard_index_provider.dart';
-import 'package:hope/providers/student_for_edit_provider.dart';
+import 'package:hope/core/themes/custom_colors.dart';
+
 import 'package:provider/provider.dart';
 
-import '../providers/student_list_provider.dart';
-import '../repository/student_repository.dart';
+import '../old/models/student.dart';
+
+import '../old/providers/student_dashboard_index_provider.dart';
+import '../old/providers/student_for_edit_provider.dart';
 import 'custom_text_box.dart';
 
 class ListItem extends StatelessWidget {
