@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
-import 'package:hope/models/student.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-class StudentRepository {
+import '../../features/student/models/student.dart';
 
+class StudentRepository {
   static List<Student> students = [];
 
   static Future<http.Response> getStudentsRequest() async {
@@ -68,7 +69,7 @@ class StudentRepository {
     );
   }
 
-  static Future<List<Student>> convertJsonToStudent(List studentMap) async{
+  static Future<List<Student>> convertJsonToStudent(List studentMap) async {
     for (Map student in studentMap) {
       Student userObj = Student(
           id: student['id'],
@@ -87,7 +88,6 @@ class StudentRepository {
   }
 
   static Future<bool> getStudents() async {
-
     var response = await getStudentsRequest();
     if (response.statusCode == 200) {
       await convertJsonToStudent(json.decode(response.body));
@@ -99,7 +99,6 @@ class StudentRepository {
   }
 
   static Future<bool> addStudent(Student student) async {
-
     var response = await addStudentRequest(student);
     if (response.statusCode == 200) {
       print("Student Added");

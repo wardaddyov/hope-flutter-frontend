@@ -1,10 +1,4 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:hope/pages/login_page.dart';
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
-
-
 
 class LoginRepository {
   static late String token;
@@ -28,12 +22,12 @@ class LoginRepository {
   static Future<Response> request(String username, String password) async {
     final dio = Dio();
     Response response;
-    response = await dio.post('https://localhost:5182/api/auth/login', data: {'username': username, 'password': password});
+    response = await dio.post('https://localhost:5182/api/auth/login',
+        data: {'username': username, 'password': password});
     return response;
   }
 
   static Future<bool> postData(String username, String password) async {
-
     var response = await request(username, password);
     if (response.statusCode == 200) {
       token = response.data;

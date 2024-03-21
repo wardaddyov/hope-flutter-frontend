@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hope/components/custom_dialog_box.dart';
-import 'package:hope/components/custom_input_field.dart';
-import 'package:hope/models/student.dart';
-import 'package:hope/providers/student_dashboard_index_provider.dart';
-import 'package:hope/providers/student_list_provider.dart';
-import 'package:hope/repository/student_repository.dart';
+import 'package:hope/core/widgets/custom_input_field.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../features/student/models/student.dart';
+import '../../../providers/student_dashboard_index_provider.dart';
+import '../../../providers/student_list_provider.dart';
+import '../../../repository/student_repository.dart';
 
 class AddStudentBody extends StatelessWidget {
   AddStudentBody({super.key});
@@ -54,39 +55,40 @@ class AddStudentBody extends StatelessWidget {
       isRequired: false,
     );
 
-    Future<void> onPressedCreate() async{
-
+    Future<void> onPressedCreate() async {
       /// Create the updated student
       Student updatedStudent = Student(
-          studentID: idField.controller.text.toEnglishDigit(),
-          firstname: firstNameField.controller.text,
-          lastname: lastNameField.controller.text,
-          entryYear: int.parse(
-              entryYearField.controller.text.toEnglishDigit()),
-          username: 'username',
-          password: 'password',
-          email: emailField.controller.text.isEmpty ? '-' : emailField.controller.text,
-          phoneNumber: phoneNumberField.controller.text.isEmpty ? '-' : phoneNumberField.controller.text,);
+        studentID: idField.controller.text.toEnglishDigit(),
+        firstname: firstNameField.controller.text,
+        lastname: lastNameField.controller.text,
+        entryYear: int.parse(entryYearField.controller.text.toEnglishDigit()),
+        username: 'username',
+        password: 'password',
+        email: emailField.controller.text.isEmpty
+            ? '-'
+            : emailField.controller.text,
+        phoneNumber: phoneNumberField.controller.text.isEmpty
+            ? '-'
+            : phoneNumberField.controller.text,
+      );
 
       /// Request for update from the server
-      var response = await StudentRepository.updateStudentRequest(
-          updatedStudent);
+      var response =
+          await StudentRepository.updateStudentRequest(updatedStudent);
 
       print(response.body);
       print(response.statusCode);
 
       /// Update the local studentList if the response is satisfactory
       if (response.statusCode == 204) {
-        context
-            .read<StudentListProvider>()
-            .updateStudent(updatedStudent);
+        context.read<StudentListProvider>().updateStudent(updatedStudent);
       }
-
 
       /// Give user feedback of how things went
       showDialog(
           context: context,
-          builder: (_) => CustomDialogBox(message: response.statusCode.toString()));
+          builder: (_) =>
+              CustomDialogBox(message: response.statusCode.toString()));
 
       /// Quit to the list view of students
       context
@@ -157,11 +159,11 @@ class CancelButton extends StatelessWidget {
 }
 
 class AddButton extends StatelessWidget {
-  const AddButton({
-    super.key,
-    required GlobalKey<FormState> formKey,
-    required this.onPressed
-  }) : _formKey = formKey;
+  const AddButton(
+      {super.key,
+      required GlobalKey<FormState> formKey,
+      required this.onPressed})
+      : _formKey = formKey;
 
   final GlobalKey<FormState> _formKey;
   final Function onPressed;
@@ -179,8 +181,8 @@ class AddButton extends StatelessWidget {
         backgroundColor: MaterialStateProperty.all(Color(0xff004DF6)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            )),
+          borderRadius: BorderRadius.circular(8.0),
+        )),
       ),
       child: Text(
         "بروزرسانی",

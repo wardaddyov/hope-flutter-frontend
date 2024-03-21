@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hope/components/custom_dialog_box.dart';
-import 'package:hope/components/custom_input_field.dart';
-import 'package:hope/models/student.dart';
-import 'package:hope/providers/student_dashboard_index_provider.dart';
-import 'package:hope/providers/student_list_provider.dart';
-import 'package:hope/repository/student_repository.dart';
+import 'package:hope/core/widgets/custom_input_field.dart';
+
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../features/student/models/student.dart';
+import '../../../providers/student_dashboard_index_provider.dart';
+import '../../../providers/student_list_provider.dart';
+import '../../../repository/student_repository.dart';
 
 class EditStudentBody extends StatelessWidget {
   EditStudentBody({
@@ -67,40 +69,36 @@ class EditStudentBody extends StatelessWidget {
     emailField.controller.text = student.email;
 
     /// This is invoked when the form is valid
-    Future<void> onPressedUpdate() async{
-
+    Future<void> onPressedUpdate() async {
       /// Create the updated student
       Student updatedStudent = Student(
           id: student.id,
           studentID: idField.controller.text.toEnglishDigit(),
           firstname: firstNameField.controller.text,
           lastname: lastNameField.controller.text,
-          entryYear: int.parse(
-              entryYearField.controller.text.toEnglishDigit()),
+          entryYear: int.parse(entryYearField.controller.text.toEnglishDigit()),
           username: 'username',
           password: 'password',
           email: '-',
           phoneNumber: '-');
 
       /// Request for update from the server
-      var response = await StudentRepository.updateStudentRequest(
-          updatedStudent);
+      var response =
+          await StudentRepository.updateStudentRequest(updatedStudent);
 
       print(response.body);
       print(response.statusCode);
 
       /// Update the local studentList if the response is satisfactory
       if (response.statusCode == 204) {
-        context
-            .read<StudentListProvider>()
-            .updateStudent(updatedStudent);
+        context.read<StudentListProvider>().updateStudent(updatedStudent);
       }
-
 
       /// Give user feedback of how things went
       showDialog(
           context: context,
-          builder: (_) => CustomDialogBox(message: response.statusCode.toString()));
+          builder: (_) =>
+              CustomDialogBox(message: response.statusCode.toString()));
 
       /// Quit to the list view of students
       context
@@ -132,8 +130,11 @@ class EditStudentBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CancelButton(),
-              SizedBox(width: 10,),
-              UpdateButton(formKey: _formKey, onPressed: () => onPressedUpdate())
+              SizedBox(
+                width: 10,
+              ),
+              UpdateButton(
+                  formKey: _formKey, onPressed: () => onPressedUpdate())
             ],
           )
         ],
@@ -150,11 +151,11 @@ class CancelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-
       onPressed: () async {
-        context.read<StudentDashboardIndexProvider>().changeSelectedIndex(newIndex: 0);
+        context
+            .read<StudentDashboardIndexProvider>()
+            .changeSelectedIndex(newIndex: 0);
       },
-
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Color(0xffEA2A33)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -171,11 +172,11 @@ class CancelButton extends StatelessWidget {
 }
 
 class UpdateButton extends StatelessWidget {
-  const UpdateButton({
-    super.key,
-    required GlobalKey<FormState> formKey,
-    required this.onPressed
-  }) : _formKey = formKey;
+  const UpdateButton(
+      {super.key,
+      required GlobalKey<FormState> formKey,
+      required this.onPressed})
+      : _formKey = formKey;
 
   final GlobalKey<FormState> _formKey;
   final Function onPressed;

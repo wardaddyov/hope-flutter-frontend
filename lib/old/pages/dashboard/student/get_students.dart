@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:hope/components/custom_text_box.dart';
 import 'package:hope/components/list_item.dart';
-import 'package:hope/providers/student_list_provider.dart';
+import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../../providers/student_list_provider.dart';
+
 class GetStudentsBody extends StatelessWidget {
-  const GetStudentsBody({super.key});
+  GetStudentsBody({super.key, required this.isItemSelectable, required this.isItemEditable});
+  final bool isItemSelectable;
+  final bool isItemEditable;
 
   @override
   Widget build(BuildContext context) {
-
     var students = context.watch<StudentListProvider>().studentList;
-
+    //EnrolmentProvider.clearEnrolmentList();
     return ListView.builder(
       itemCount: students.length,
       itemBuilder: (context, index) {
         return ListItem(
           student: students[index],
-          index: index,
+          index: index, isItemSelectable: isItemSelectable, isItemEditable: isItemEditable,
         );
       },
     );
@@ -25,8 +28,8 @@ class GetStudentsBody extends StatelessWidget {
 }
 
 class GetStudentsHeader extends StatelessWidget {
-  const GetStudentsHeader({super.key});
 
+  const GetStudentsHeader({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,7 +41,6 @@ class GetStudentsHeader extends StatelessWidget {
             color: Color(0xff95D7FF),
             borderRadius: BorderRadius.all(Radius.circular(8))),
         child: Row(
-
           ///Todo: Make it scrollable so that it fits different screens
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -47,11 +49,12 @@ class GetStudentsHeader extends StatelessWidget {
             CustomTextBox(title: 'سال ورودی'),
             CustomTextBox(title: 'ایمیل'),
             CustomTextBox(title: 'شماره تلفن'),
-            SizedBox(width: 170,)
+            SizedBox(
+              width: 170,
+            )
           ],
         ),
       ),
     );
   }
 }
-

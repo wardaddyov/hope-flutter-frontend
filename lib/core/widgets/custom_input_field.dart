@@ -49,6 +49,7 @@ class CustomInputField extends StatelessWidget {
           labelText: labelText,
           prefixIcon: prefixIcon,
         ),
+        onChanged: (value) => ,
       ),
     );
   }

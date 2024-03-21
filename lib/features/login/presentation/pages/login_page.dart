@@ -11,9 +11,9 @@ import 'package:hope/features/login/presentation/widgets/username_field.dart';
 import 'package:hope/old/pages/loading_page.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage2 extends StatelessWidget {
+class LoginPage extends StatelessWidget {
 
-  LoginPage2({super.key});
+  LoginPage({super.key});
 
   final usernameField = UsernameField();
   final passwordField = PasswordField();

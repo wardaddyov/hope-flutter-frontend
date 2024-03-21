@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
-import '../models/student.dart';
+
+import '../../features/student/models/student.dart';
 
 class StudentListProvider extends ChangeNotifier {
-
   List<Student> studentList = [];
 
-  void updateStudentList(List<Student> newStudentList)
-  {
+  void updateStudentList(List<Student> newStudentList) {
     studentList = newStudentList;
     notifyListeners();
   }
 
-  void addStudent(Student student)
-  {
+  void addStudent(Student student) {
     studentList.add(student);
     notifyListeners();
   }
 
-  void updateStudent(Student updatedStudent)
-  {
-    for(int i = 0; i < studentList.length; i++)
-      {
-        if (studentList[i].id == updatedStudent.id){
-          studentList[i]  = updatedStudent;
-        }
+  void updateStudent(Student updatedStudent) {
+    for (int i = 0; i < studentList.length; i++) {
+      if (studentList[i].id == updatedStudent.id) {
+        studentList[i] = updatedStudent;
       }
+    }
     notifyListeners();
   }
 
-  void deleteStudent(Student student)
-  {
+  void deleteStudent(Student student) {
     var res = studentList.remove(student);
     print(res);
     notifyListeners();
