@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope/core/resources/string_extensions.dart';
+import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class CustomInputField extends StatelessWidget {
@@ -10,9 +12,9 @@ class CustomInputField extends StatelessWidget {
       required this.prefixIcon,
       this.helperText = '',
       this.isRequired = true,
-      this.minAmountOfChars = 0, this.maxAmountOfChars = 50, this.isNumber = false});
+      this.minAmountOfChars = 0, this.maxAmountOfChars = 50, this.isNumber = false, this.customController, this.onChanged});
 
-  final controller = TextEditingController();
+  TextEditingController controller = TextEditingController();
   final bool isRequired;
   final bool isNumber;
   final int minAmountOfChars;
@@ -21,9 +23,21 @@ class CustomInputField extends StatelessWidget {
   final String hintText;
   final String labelText;
   final Icon prefixIcon;
+  TextEditingController? customController;
+  Function? onChanged;
+
 
   @override
   Widget build(BuildContext context) {
+
+    if (customController != null){
+      controller = customController!;
+    }
+
+    if (onChanged != null){
+      controller.addListener(() => onChanged!());
+    }
+
     return SizedBox(
       width: 400,
       child: TextFormField(
@@ -49,7 +63,7 @@ class CustomInputField extends StatelessWidget {
           labelText: labelText,
           prefixIcon: prefixIcon,
         ),
-        onChanged: (value) => ,
+
       ),
     );
   }

@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hope/core/resources/data_state.dart';
+import 'package:hope/features/course/Dto/course_create_dto.dart';
 import 'package:hope/features/course/model/course.dart';
 import 'package:hope/features/course/repository/course_repository_impl.dart';
 
 class CourseProvider extends ChangeNotifier{
   List<Course>? courses;
-  bool? failure;
+  bool? loadFailure;
+  bool? createFailure;
 
   void getCourses() async {
     CourseRepositoryImpl courseRepositoryImpl = CourseRepositoryImpl();
@@ -17,11 +19,28 @@ class CourseProvider extends ChangeNotifier{
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty){
       courses = dataState.data!;
-      failure = false;
+      loadFailure = false;
     }
 
     if (dataState is DataFailed){
-      failure = true;
+      loadFailure = true;
+    }
+
+    notifyListeners();
+  }
+
+  void createCourse(CourseCreateDto courseCreateDto) async {
+    CourseRepositoryImpl courseRepositoryImpl = CourseRepositoryImpl();
+
+    //await Future.delayed(Duration(seconds: 2));
+    final dataState = await courseRepositoryImpl.createCourse(courseCreateDto);
+
+    if (dataState is DataSuccess){
+      createFailure = false;
+    }
+
+    if (dataState is DataFailed){
+      createFailure = true;
     }
 
     notifyListeners();

@@ -6,7 +6,7 @@ import 'package:hope/core/widgets/dashboard_container_header.dart';
 import 'package:hope/core/widgets/dashboard_header_counter_text.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/course/presentation/widgets/confirm_enrolment_button.dart';
-import 'package:hope/features/course/presentation/widgets/course_list.dart';
+import 'package:hope/features/course/presentation/widgets/list_course.dart';
 import 'package:hope/features/course/presentation/widgets/create_course.dart';
 import 'package:hope/features/course/presentation/widgets/creation_from.dart';
 import 'package:hope/old/pages/dashboard/student/get_students.dart';
@@ -34,7 +34,7 @@ class CoursePage extends StatelessWidget {
         body = CourseList();
       // Add courses
       case 1:
-        body = CreationForm();
+        body = CreateCourse();
       // Select Student
       case 2:
         body = Column(

@@ -7,7 +7,11 @@ import 'package:provider/provider.dart';
 import '../../../providers/student_list_provider.dart';
 
 class GetStudentsBody extends StatelessWidget {
-  GetStudentsBody({super.key, required this.isItemSelectable, required this.isItemEditable});
+  GetStudentsBody(
+      {super.key,
+      required this.isItemSelectable,
+      required this.isItemEditable});
+
   final bool isItemSelectable;
   final bool isItemEditable;
 
@@ -20,7 +24,9 @@ class GetStudentsBody extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListItem(
           student: students[index],
-          index: index, isItemSelectable: isItemSelectable, isItemEditable: isItemEditable,
+          index: index,
+          isItemSelectable: isItemSelectable,
+          isItemEditable: isItemEditable,
         );
       },
     );
@@ -28,8 +34,8 @@ class GetStudentsBody extends StatelessWidget {
 }
 
 class GetStudentsHeader extends StatelessWidget {
-
   const GetStudentsHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -49,9 +55,7 @@ class GetStudentsHeader extends StatelessWidget {
             CustomTextBox(title: 'سال ورودی'),
             CustomTextBox(title: 'ایمیل'),
             CustomTextBox(title: 'شماره تلفن'),
-            SizedBox(
-              width: 170,
-            )
+            CustomTextBox(title: 'عملیات')
           ],
         ),
       ),

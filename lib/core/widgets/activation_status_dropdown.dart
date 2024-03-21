@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 
 class ActivationStatusDropdown extends StatefulWidget {
   const ActivationStatusDropdown({super.key});
@@ -23,7 +24,8 @@ class _ActivationStatusDropdownState extends State<ActivationStatusDropdown> {
         return DropdownMenuItem(value: item, child: Text(item));
       }).toList(), onChanged: (String? newValue) {
         setState(() {
-          activationStatus = newValue!;
+          NewCourseCache.activationStatus = newValue!;
+          activationStatus = newValue;
         });
       },
         value: activationStatus,

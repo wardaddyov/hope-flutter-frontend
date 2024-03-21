@@ -5,37 +5,59 @@ import 'package:hope/features/course/presentation/provider/course_page_index_pro
 import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 import 'package:provider/provider.dart';
 
-class CreationForm extends StatefulWidget {
-  const CreationForm({super.key});
+import 'confirm_course_details_button.dart';
 
+class CreationForm extends StatefulWidget {
+  CreationForm({super.key, required this.formKey});
+  GlobalKey<FormState> formKey;
   @override
   State<CreationForm> createState() => _CreationFormState();
 }
 
 class _CreationFormState extends State<CreationForm> {
 
-  var nameField = CustomInputField(
-      hintText: 'نام درس را وارد کنید',
-      labelText: 'نام درس',
-      prefixIcon: Icon(Icons.book));
-  var groupField = CustomInputField(
-      hintText: 'گروه درس را وارد کنید',
-      labelText: 'گروه درس',
-      prefixIcon: Icon(Icons.discount));
-
-  NewCourseCache cache = NewCourseCache();
+  final nameFieldCustomController = TextEditingController();
+  final groupFieldCustomController = TextEditingController();
+  final semesterFieldCustomController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
 
-    // Todo: Implement the actual widget after Behdad designed it
-    var selectStudentButton = Container(width: 400, child: ElevatedButton(onPressed: (){context.read<CoursePageIndexProvider>().changeSelectedIndex(newIndex: 2);}, child: Text('انتخاب دانشجویان')));
-    nameField.controller.text = cache.name;
-    groupField.controller.text = cache.group;
+    void cacheName(){
+      NewCourseCache.name = nameFieldCustomController.text;
+    }
+    void cacheGroup(){
+      NewCourseCache.group = groupFieldCustomController.text;
+    }
+    void cacheSemester(){
+      NewCourseCache.semester = semesterFieldCustomController.text;
+    }
 
+    var nameField = CustomInputField(
+        hintText: 'نام درس را وارد کنید',
+        labelText: 'نام درس',
+        customController: nameFieldCustomController,
+        onChanged: () => cacheName(),
+        prefixIcon: Icon(Icons.book));
+    var groupField = CustomInputField(
+        hintText: 'گروه درس را وارد کنید',
+        labelText: 'گروه درس',
+        isNumber: true,
+        customController: groupFieldCustomController,
+        onChanged: () => cacheGroup(),
+        prefixIcon: Icon(Icons.discount));
+    var semesterField = CustomInputField(
+        hintText: 'ترم درس را وارد کنید',
+        labelText: 'ترم درس',
+        isNumber: true,
+        isRequired: true,
+        maxAmountOfChars: 4,
+        minAmountOfChars: 4,
+        customController: semesterFieldCustomController,
+        onChanged: () => cacheSemester(),
+        prefixIcon: Icon(Icons.clear_all));
     return Form(
-      key: formKey,
+      key: widget.formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -45,7 +67,7 @@ class _CreationFormState extends State<CreationForm> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [groupField, selectStudentButton],
+            children: [groupField, semesterField],
           ),
         ],
       ),

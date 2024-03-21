@@ -12,7 +12,6 @@ class ConfirmEnrolmentButton extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(7, 28, 7, 28),
       child: ElevatedButton(
           onPressed: () {
-            EnrolmentProvider.clearEnrolmentList();
             context
                 .read<CoursePageIndexProvider>()
                 .changeSelectedIndex(newIndex: 1);

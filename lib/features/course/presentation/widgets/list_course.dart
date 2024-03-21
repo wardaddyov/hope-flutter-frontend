@@ -14,7 +14,7 @@ class CourseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var courses = context.watch<CourseProvider>().courses;
-    var failure = context.watch<CourseProvider>().failure;
+    var failure = context.watch<CourseProvider>().loadFailure;
     Widget bodyWidget;
 
     // Get data for the first time
