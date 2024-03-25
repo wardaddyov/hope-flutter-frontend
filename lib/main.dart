@@ -5,18 +5,19 @@ import 'package:hope/features/course/presentation/pages/course_page.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/course/presentation/provider/course_provider.dart';
 import 'package:hope/features/student/presentation/providers/student_provider.dart';
+import 'package:hope/old/pages/loading_page.dart';
 import 'package:provider/provider.dart';
 import 'features/login/presentation/pages/login_page.dart';
 import 'features/login/presentation/provider/jwt_provider.dart';
-import 'old/providers/student_dashboard_index_provider.dart';
-import 'old/providers/student_for_edit_provider.dart';
+import 'features/student/presentation/providers/student_page_index_provider.dart';
+import 'features/student/presentation/providers/select_student.dart';
 import 'old/providers/student_list_provider.dart';
 
 void main() => runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => StudentDashboardIndexProvider()),
+        ChangeNotifierProvider(create: (context) => StudentPageIndexProvider()),
         ChangeNotifierProvider(create: (context) => StudentListProvider()),
-        ChangeNotifierProvider(create: (context) => StudentForEditProvider()),
+        ChangeNotifierProvider(create: (context) => SelectStudent()),
         ChangeNotifierProvider(create: (context) => JwtProvider()),
         ChangeNotifierProvider(create: (context) => CourseProvider()),
         ChangeNotifierProvider(create: (context) => CoursePageIndexProvider()),
@@ -39,6 +40,6 @@ void main() => runApp(MultiProvider(
             inputDecorationTheme: MyInputTheme().theme(),
           ),
           debugShowCheckedModeBanner: false,
-          home: LoginPage() //DashboardTemplate(),
+          home: LoadingPage() //DashboardTemplate(),
           ),
     ));

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hope/components/custom_dialog_box.dart';
+import 'package:hope/core/widgets/custom_dialog_box.dart';
 import 'package:hope/core/widgets/custom_input_field.dart';
 
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../features/student/models/student.dart';
-import '../../../providers/student_dashboard_index_provider.dart';
+import '../../../../features/student/presentation/providers/student_page_index_provider.dart';
 import '../../../providers/student_list_provider.dart';
 import '../../../repository/student_repository.dart';
 
@@ -80,7 +80,8 @@ class EditStudentBody extends StatelessWidget {
           username: 'username',
           password: 'password',
           email: '-',
-          phoneNumber: '-');
+          phoneNumber: '-',
+      description: '');
 
       /// Request for update from the server
       var response =
@@ -102,7 +103,7 @@ class EditStudentBody extends StatelessWidget {
 
       /// Quit to the list view of students
       context
-          .read<StudentDashboardIndexProvider>()
+          .read<StudentPageIndexProvider>()
           .changeSelectedIndex(newIndex: 0);
     }
 
@@ -153,7 +154,7 @@ class CancelButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () async {
         context
-            .read<StudentDashboardIndexProvider>()
+            .read<StudentPageIndexProvider>()
             .changeSelectedIndex(newIndex: 0);
       },
       style: ButtonStyle(

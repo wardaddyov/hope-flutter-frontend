@@ -9,9 +9,12 @@ import 'package:hope/features/course/presentation/widgets/confirm_enrolment_butt
 import 'package:hope/features/course/presentation/widgets/list_course.dart';
 import 'package:hope/features/course/presentation/widgets/create_course.dart';
 import 'package:hope/features/course/presentation/widgets/creation_from.dart';
+import 'package:hope/features/student/presentation/providers/select_student.dart';
+import 'package:hope/features/student/presentation/widgets/create_student.dart';
+import 'package:hope/features/student/presentation/widgets/edit_student.dart';
 import 'package:hope/features/student/presentation/widgets/list_students.dart';
 import 'package:hope/old/pages/dashboard/student/get_students.dart';
-import 'package:hope/old/providers/student_dashboard_index_provider.dart';
+import 'package:hope/features/student/presentation/providers/student_page_index_provider.dart';
 
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:provider/provider.dart';
@@ -27,27 +30,15 @@ class StudentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget body;
     selectedIndex =
-        context.watch<StudentDashboardIndexProvider>().selectedIndex;
+        context.watch<StudentPageIndexProvider>().selectedIndex;
 
     switch (selectedIndex) {
-    // Get courses
       case 0:
         body = ListStudents();
-    // Add courses
       case 1:
-        body = CreateCourse();
-    // Select Student
+        body = CreateStudent();
       case 2:
-        body = Column(
-          children: [
-            DashboardContainerHeader(title: 'لیست دانشجویان', leftElement: ConfirmEnrolmentButton()),
-            //GetStudentsHeader(),
-            Expanded(
-              child: GetStudentsBody(isItemSelectable: true, isItemEditable: false,),
-            ),
-          ],
-        );
-    // Update courses
+        body = EditStudent(student: context.read<SelectStudent>().student!,);
 
       default:
         throw UnimplementedError('no widget for $selectedIndex');

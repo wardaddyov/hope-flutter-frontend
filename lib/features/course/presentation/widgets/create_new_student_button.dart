@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
-import 'package:hope/old/providers/student_dashboard_index_provider.dart';
+import 'package:hope/features/student/presentation/providers/student_page_index_provider.dart';
 import 'package:provider/provider.dart';
 
 class CreateNewStudentButton extends StatelessWidget {

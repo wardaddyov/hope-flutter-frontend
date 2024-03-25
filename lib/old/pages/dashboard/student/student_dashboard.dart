@@ -8,8 +8,8 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../features/student/models/student.dart';
-import '../../../providers/student_dashboard_index_provider.dart';
-import '../../../providers/student_for_edit_provider.dart';
+import '../../../../features/student/presentation/providers/student_page_index_provider.dart';
+import '../../../../features/student/presentation/providers/select_student.dart';
 import '../../../providers/student_list_provider.dart';
 import 'add_student.dart';
 import 'edit_student.dart';
@@ -27,7 +27,7 @@ class StudentDashboard extends StatelessWidget {
     Widget header;
     Widget mainHeader;
     selectedIndex =
-        context.watch<StudentDashboardIndexProvider>().selectedIndex;
+        context.watch<StudentPageIndexProvider>().selectedIndex;
     students = context.watch<StudentListProvider>().studentList;
 
     switch (selectedIndex) {
@@ -44,7 +44,7 @@ class StudentDashboard extends StatelessWidget {
 
       case 2:
         body = EditStudentBody(
-            student: context.watch<StudentForEditProvider>().student!);
+            student: context.watch<SelectStudent>().student!);
         header = SizedBox.shrink();
         mainHeader = buildHeader(buildAddButton(context), 'ویرایش دانشجو');
       default:
@@ -116,7 +116,7 @@ class StudentDashboard extends StatelessWidget {
       child: ElevatedButton(
           onPressed: () {
             context
-                .read<StudentDashboardIndexProvider>()
+                .read<StudentPageIndexProvider>()
                 .changeSelectedIndex(newIndex: 1);
           },
           style: ButtonStyle(

@@ -7,6 +7,7 @@ import 'package:hope/features/course/presentation/provider/enrolment_provider.da
 import 'package:hope/features/student/models/student.dart';
 import 'package:hope/features/student/presentation/widgets/delete_student_button.dart';
 import 'package:hope/features/student/presentation/widgets/edit_student_button.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 import 'package:provider/provider.dart';
 
@@ -40,18 +41,18 @@ class StudentItem extends StatelessWidget {
           ///Todo: Make it scrollable so that it fits different screens
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomTextBox(title: name),
-            CustomTextBox(title: studentId),
-            CustomTextBox(title: entryYear),
+            CustomTextBox(title: name.toPersianDigit()),
+            CustomTextBox(title: studentId.toPersianDigit()),
+            CustomTextBox(title: entryYear.toPersianDigit()),
             CustomTextBox(title: email),
-            CustomTextBox(title: phone),
+            CustomTextBox(title: phone.toPersianDigit()),
             SizedBox(
-              width: 200,
+              width: 250,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  EditStudentButton(),
-                  DeleteStudentButton(),
+                  EditStudentButton(student: student,),
+                  DeleteStudentButton(id: student.id!,),
                 ],
               ),
             )

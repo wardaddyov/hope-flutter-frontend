@@ -80,7 +80,7 @@ class StudentRepository {
           password: '',
           username: '',
           email: '-',
-          phoneNumber: '-');
+          phoneNumber: '-', description: '');
       students.add(userObj);
     }
 

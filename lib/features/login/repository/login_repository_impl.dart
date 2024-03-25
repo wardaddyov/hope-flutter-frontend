@@ -9,6 +9,7 @@ class LoginRepositoryImpl implements LoginRepository{
 
   @override
   Future<DataState<String>> login(User user) async {
+    //todo: Unhandled Exception: ClientException with SocketException: The remote computer refused the network connection.
     final httpResponse = await LoginApiService.request(user.username, user.password);
 
     if (httpResponse.statusCode == HttpStatus.ok){

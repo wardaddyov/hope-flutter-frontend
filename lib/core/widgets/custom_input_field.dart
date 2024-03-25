@@ -12,7 +12,7 @@ class CustomInputField extends StatelessWidget {
       required this.prefixIcon,
       this.helperText = '',
       this.isRequired = true,
-      this.minAmountOfChars = 0, this.maxAmountOfChars = 50, this.isNumber = false, this.customController, this.onChanged});
+      this.minAmountOfChars = 0, this.maxAmountOfChars = 50, this.isNumber = false, this.customController, this.onChanged, this.width = 400, this.height});
 
   TextEditingController controller = TextEditingController();
   final bool isRequired;
@@ -23,6 +23,8 @@ class CustomInputField extends StatelessWidget {
   final String hintText;
   final String labelText;
   final Icon prefixIcon;
+  final double width;
+  final double? height;
   TextEditingController? customController;
   Function? onChanged;
 
@@ -38,32 +40,36 @@ class CustomInputField extends StatelessWidget {
       controller.addListener(() => onChanged!());
     }
 
-    return SizedBox(
-      width: 400,
-      child: TextFormField(
-        validator: (s) {
-          if (s!.isWhitespace() && isRequired) {
-            return "این قسمت نمی‌تواند خالی باشد";
-          }
-          if (isRequired && isNumber && !RegExp(r'^[0-9]+$').hasMatch(s.toEnglishDigit())){
-            return "در این قسمت تنها عدد مجاز است";
-          }
-          if (s.length > maxAmountOfChars){
-            return 'تعداد کاراکتر وارد شده بیشتر از حد مجاز';
-          }
-          if (s.length < minAmountOfChars){
-            return 'تعداد کاراکتر وارد شده کمتر از حد مجاز';
-          }
-          return null;
-        },
-        controller: controller,
-        decoration: InputDecoration(
-          helperText: helperText,
-          hintText: hintText,
-          labelText: labelText,
-          prefixIcon: prefixIcon,
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: TextFormField(
+          validator: (s) {
+            if (s!.isWhitespace() && isRequired) {
+              return "این قسمت نمی‌تواند خالی باشد";
+            }
+            if (isRequired && isNumber && !RegExp(r'^[0-9]+$').hasMatch(s.toEnglishDigit())){
+              return "در این قسمت تنها عدد مجاز است";
+            }
+            if (s.length > maxAmountOfChars){
+              return 'تعداد کاراکتر وارد شده بیشتر از حد مجاز';
+            }
+            if (s.length < minAmountOfChars){
+              return 'تعداد کاراکتر وارد شده کمتر از حد مجاز';
+            }
+            return null;
+          },
+          controller: controller,
+          decoration: InputDecoration(
+            helperText: helperText,
+            hintText: hintText,
+            labelText: labelText,
+            prefixIcon: prefixIcon,
+          ),
 
+        ),
       ),
     );
   }

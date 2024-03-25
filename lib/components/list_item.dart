@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 
 import '../features/student/models/student.dart';
 
-import '../old/providers/student_dashboard_index_provider.dart';
-import '../old/providers/student_for_edit_provider.dart';
+import '../features/student/presentation/providers/student_page_index_provider.dart';
+import '../features/student/presentation/providers/select_student.dart';
 import '../features/student/presentation/widgets/custom_text_box.dart';
 
 class ListItem extends StatefulWidget {
@@ -70,10 +70,10 @@ class _ListItemState extends State<ListItem> {
             IconButton(
                 onPressed: () {
                   context
-                      .read<StudentForEditProvider>()
-                      .setNewStudentForEdit(widget.student);
+                      .read<SelectStudent>()
+                      .selectNewStudent(widget.student);
                   context
-                      .read<StudentDashboardIndexProvider>()
+                      .read<StudentPageIndexProvider>()
                       .changeSelectedIndex(newIndex: 2);
                 },
                 icon: Icon(Icons.edit)),
