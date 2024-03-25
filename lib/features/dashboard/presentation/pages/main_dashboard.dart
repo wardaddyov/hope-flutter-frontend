@@ -4,6 +4,7 @@ import 'package:hope/components/dashboard_main_container.dart';
 import 'package:hope/core/widgets/logo.dart';
 import 'package:hope/features/course/presentation/pages/course_page.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
+import 'package:hope/features/student/presentation/pages/student_page.dart';
 import 'package:hope/old/providers/student_dashboard_index_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +28,7 @@ class _DashboardTemplateState extends State<DashboardTemplate> {
       case 0:
         page = Placeholder();
       case 1:
-        page = StudentDashboard();
+        page = StudentPage();
         WidgetsBinding.instance
             .addPostFrameCallback((_) =>
             context.read<StudentDashboardIndexProvider>().changeSelectedIndex(newIndex: 0));

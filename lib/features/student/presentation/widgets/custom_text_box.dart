@@ -8,7 +8,7 @@ class CustomTextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 170,
+      width: 200,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(5.0,0,5,0),
@@ -16,7 +16,7 @@ class CustomTextBox extends StatelessWidget {
             textAlign: TextAlign.center,
             title,
             style: TextStyle(
-                fontSize: 12,
+                fontSize: 16,
                 color: Color(0xff0077C0),
                 fontWeight: FontWeight.w500
             ),),

@@ -3,14 +3,14 @@ import 'package:hope/core/themes/custom_colors.dart';
 
 class MyInputTheme{
 
-  TextStyle _buildTextStyle(Color color, {double size = 16.0}){
+   TextStyle _buildTextStyle(Color color, {double size = 16.0}){
     return TextStyle(
       color: color,
       fontSize: size
     );
   }
 
-  OutlineInputBorder _buildBorder(Color color, {double width = 1.0}){
+   OutlineInputBorder _buildBorder(Color color, {double width = 1.0}){
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10)),
       borderSide: BorderSide(

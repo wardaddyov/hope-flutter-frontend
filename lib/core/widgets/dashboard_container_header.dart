@@ -18,7 +18,7 @@ class DashboardContainerHeader extends StatelessWidget {
             title,
             style: TextStyle(
               color: Color(0xff0077c0),
-              fontSize: 16,
+              fontSize: 18,
             ),
           ),
         ),

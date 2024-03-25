@@ -10,7 +10,7 @@ import '../features/student/models/student.dart';
 
 import '../old/providers/student_dashboard_index_provider.dart';
 import '../old/providers/student_for_edit_provider.dart';
-import 'custom_text_box.dart';
+import '../features/student/presentation/widgets/custom_text_box.dart';
 
 class ListItem extends StatefulWidget {
   ListItem(
