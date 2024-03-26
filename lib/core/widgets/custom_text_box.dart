@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomTextBox extends StatelessWidget {
-  const CustomTextBox({super.key, required this.title});
+  CustomTextBox({super.key, required this.title, this.width = 250});
 
   final String title;
+  double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 250,
+      width: width,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(5.0,0,5,0),

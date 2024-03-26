@@ -10,7 +10,7 @@ import '../features/student/models/student.dart';
 
 import '../features/student/presentation/providers/student_page_index_provider.dart';
 import '../features/student/presentation/providers/select_student.dart';
-import '../features/student/presentation/widgets/custom_text_box.dart';
+import '../core/widgets/custom_text_box.dart';
 
 class ListItem extends StatefulWidget {
   ListItem(
@@ -37,30 +37,30 @@ class _ListItemState extends State<ListItem> {
     Widget select;
     Widget options;
     //todo: this is possibly very inefficient
-    if (EnrolmentProvider.enrolments.contains(widget.student)) {
-      isChecked = true;
-    }
-    if (widget.isItemSelectable) {
-      select = SizedBox(
-        width: 170,
-        child: Checkbox(
-            value: isChecked,
-            onChanged: (value) {
-              setState(() {
-                isChecked = value!;
-                if (value == false) {
-                  EnrolmentProvider.removeEnrolment(widget.student);
-                }
-                if (value == true &&
-                    !EnrolmentProvider.enrolments.contains(widget.student)) {
-                  EnrolmentProvider.addEnrolment(widget.student);
-                }
-              });
-            }),
-      );
-    } else {
-      select = SizedBox.shrink();
-    }
+    // if (EnrolmentProvider.enrolments.contains(widget.student)) {
+    //   isChecked = true;
+    // }
+    // if (widget.isItemSelectable) {
+    //   select = SizedBox(
+    //     width: 170,
+    //     child: Checkbox(
+    //         value: isChecked,
+    //         onChanged: (value) {
+    //           setState(() {
+    //             isChecked = value!;
+    //             if (value == false) {
+    //               EnrolmentProvider.removeEnrolment(widget.student);
+    //             }
+    //             if (value == true &&
+    //                 !EnrolmentProvider.enrolments.contains(widget.student)) {
+    //               EnrolmentProvider.addEnrolment(widget.student);
+    //             }
+    //           });
+    //         }),
+    //   );
+    // } else {
+    //   select = SizedBox.shrink();
+    // }
 
     if (widget.isItemEditable == true) {
       options = SizedBox(
@@ -117,7 +117,7 @@ class _ListItemState extends State<ListItem> {
                 children: [
                   options,
                   // Todo: make the checkbox stay on when user navigates to a different page
-                  select
+                 // select
                 ],
               ),
             )

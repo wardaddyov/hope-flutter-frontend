@@ -7,6 +7,8 @@ abstract class CourseRepository{
   Future<DataState<List<Course>>> getCourses();
   Future<DataState<Course>> getCourse();
   Future<DataState> createCourse(CourseCreateDto courseCreateDto);
-  Future<DataState> createEnrolments(Course course, List<Student> students);
+  Future<DataState> createEnrolments(int courseId, List<Student> students);
   Future<DataState> updateCourse(Course updatedCourse);
+  Future<DataState> deleteCourse(int id);
+
 }

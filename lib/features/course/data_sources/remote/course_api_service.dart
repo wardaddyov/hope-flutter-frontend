@@ -45,9 +45,7 @@ class CourseApiService{
         'Accept-Encoding': 'gzip, deflate, br',
         'Connection': 'keep-alive',
       },
-      body: jsonEncode(<List<int>>{
-        studentIds
-      }),
+      body: jsonEncode(studentIds),
     );
   }
 }

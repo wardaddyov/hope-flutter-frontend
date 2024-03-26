@@ -30,8 +30,10 @@ class ConfirmCourseDetailsButton extends StatelessWidget {
             var isFormValid = formKey.currentState!.validate();
 
             if (isFormValid){
-              context.read<CourseProvider>().createCourse(NewCourseCache.exportCache());
-              EnrolmentProvider.clearEnrolmentList();
+              context.read<CourseProvider>().createCourse(NewCourseCache.exportCache(), context.read<EnrolmentProvider>().enrolments);
+
+
+              //EnrolmentProvider.clearEnrolmentList();
               // context
               //     .read<CoursePageIndexProvider>()
               //     .changeSelectedIndex(newIndex: 2);
@@ -41,14 +43,14 @@ class ConfirmCourseDetailsButton extends StatelessWidget {
 
           style: ButtonStyle(
             elevation: MaterialStatePropertyAll(0),
-            backgroundColor: MaterialStatePropertyAll(Color(0xff0077c0)),
+            backgroundColor: MaterialStatePropertyAll(Color(0xff004DF6)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 )),
           ),
           child: Text(
-            'بعدی',
+            'افزودن',
             style: TextStyle(color: Colors.white),
           )),
     );

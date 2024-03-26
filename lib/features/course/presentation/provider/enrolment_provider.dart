@@ -1,21 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:hope/core/resources/data_state.dart';
+import 'package:hope/features/course/model/course.dart';
+import 'package:hope/features/course/repository/course_repository_impl.dart';
 import 'package:hope/features/student/models/student.dart';
 
-class EnrolmentProvider{
-  static List<Student> enrolments = [];
+class EnrolmentProvider extends ChangeNotifier
+{
+  List<Student> enrolments = [];
+  bool? postFailed;
 
-  static void addEnrolment(Student student){
+  void addEnrolment(Student student){
     enrolments.add(student);
+    notifyListeners();
   }
-  static void removeEnrolment(Student student){
+  void removeEnrolment(Student student){
     enrolments.remove(student);
+    notifyListeners();
   }
 
-  static void clearEnrolmentList(){
+  void postEnrolment(int courseId, List<Student> students) async {
+    CourseRepositoryImpl courseRepositoryImpl = CourseRepositoryImpl();
+
+    //await Future.delayed(Duration(seconds: 2));
+    final dataState = await courseRepositoryImpl.createEnrolments(courseId, students);
+
+    if (dataState is DataSuccess && dataState.data!.isNotEmpty){
+      postFailed = false;
+    }
+
+    if (dataState is DataFailed){
+      postFailed = true;
+    }
+
+    notifyListeners();
+  }
+
+  void clearEnrolmentList(){
     enrolments = [];
   }
 
-  static List<Student> getEnrolments(){
+  List<Student> getEnrolments(){
     return enrolments;
   }
 }

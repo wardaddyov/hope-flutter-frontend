@@ -11,7 +11,7 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 
 import 'package:provider/provider.dart';
 
-import 'custom_text_box.dart';
+import '../../../../core/widgets/custom_text_box.dart';
 
 class StudentItem extends StatelessWidget {
   StudentItem({super.key, required this.student, required this.index});

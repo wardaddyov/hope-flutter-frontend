@@ -9,6 +9,7 @@ import 'package:hope/features/course/presentation/widgets/confirm_enrolment_butt
 import 'package:hope/features/course/presentation/widgets/list_course.dart';
 import 'package:hope/features/course/presentation/widgets/create_course.dart';
 import 'package:hope/features/course/presentation/widgets/creation_from.dart';
+import 'package:hope/features/course/presentation/widgets/select_student_page/list_students.dart';
 import 'package:hope/old/pages/dashboard/student/get_students.dart';
 
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -24,6 +25,7 @@ class CoursePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Widget body;
     selectedIndex =
         context.watch<CoursePageIndexProvider>().selectedIndex;
@@ -37,15 +39,7 @@ class CoursePage extends StatelessWidget {
         body = CreateCourse();
       // Select Student
       case 2:
-        body = Column(
-          children: [
-            DashboardContainerHeader(title: 'لیست دانشجویان', leftElement: ConfirmEnrolmentButton()),
-            GetStudentsHeader(),
-            Expanded(
-              child: GetStudentsBody(isItemSelectable: true, isItemEditable: false,),
-            ),
-          ],
-        );
+        body = ListStudents();
       // Update courses
 
       default:

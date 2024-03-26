@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hope/components/custom_button.dart';
-import 'package:hope/components/dashboard_main_container.dart';
+import 'package:hope/features/dashboard/presentation/widgets/dashboard_main_container.dart';
 import 'package:hope/core/widgets/logo.dart';
 import 'package:hope/features/course/presentation/pages/course_page.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
@@ -29,14 +29,14 @@ class _DashboardTemplateState extends State<DashboardTemplate> {
         page = Placeholder();
       case 1:
         page = StudentPage();
-        WidgetsBinding.instance
-            .addPostFrameCallback((_) =>
-            context.read<StudentPageIndexProvider>().changeSelectedIndex(newIndex: 0));
+        // WidgetsBinding.instance
+        //     .addPostFrameCallback((_) =>
+        //     context.read<StudentPageIndexProvider>().changeSelectedIndex(newIndex: 0));
       case 2:
         page = CoursePage();
-        WidgetsBinding.instance
-            .addPostFrameCallback((_) =>
-            context.read<CoursePageIndexProvider>().changeSelectedIndex(newIndex: 0));
+        // WidgetsBinding.instance
+        //     .addPostFrameCallback((_) =>
+        //     context.read<CoursePageIndexProvider>().changeSelectedIndex(newIndex: 0));
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hope/features/student/presentation/widgets/custom_text_box.dart';
+import 'package:hope/core/widgets/custom_text_box.dart';
 import 'package:hope/components/list_item.dart';
 import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
 import 'package:provider/provider.dart';

@@ -13,7 +13,7 @@ class CourseRepositoryImpl implements CourseRepository{
   @override
   Future<DataState> createCourse(CourseCreateDto courseCreateDto) async {
     final httpResponse = await CourseApiService.postCourseRequest(courseCreateDto);
-
+    print(httpResponse.body);
     if (httpResponse.statusCode == HttpStatus.ok){
       return DataSuccess(httpResponse.body);
     } else {
@@ -45,8 +45,25 @@ class CourseRepositoryImpl implements CourseRepository{
   }
 
   @override
-  Future<DataState> createEnrolments(Course course, List<Student> students) {
-    // TODO: implement createEnrolments
+  Future<DataState> createEnrolments(int courseId, List<Student> students) async {
+    List<int> ids = [];
+    for (Student student in students){
+      ids.add(student.id!);
+    }
+
+    final httpResponse = await CourseApiService.postEnrolmentsRequest(courseId, ids);
+    print(httpResponse.body);
+
+    if (httpResponse.statusCode == HttpStatus.ok){
+      return DataSuccess(httpResponse.body);
+    } else {
+    return DataFailed();
+    }
+  }
+
+  @override
+  Future<DataState> deleteCourse(int id) {
+    // TODO: implement deleteCourse
     throw UnimplementedError();
   }
 

@@ -17,7 +17,6 @@ class StudentProvider extends ChangeNotifier {
 
   void getStudent() async {
 
-    notifyListeners();
 
     await Future.delayed(Duration(seconds: 2));
     final dataState = await studentRepositoryImpl.getStudents();

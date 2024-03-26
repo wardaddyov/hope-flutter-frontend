@@ -4,6 +4,7 @@ import 'package:hope/core/themes/my_input_theme.dart';
 import 'package:hope/features/course/presentation/pages/course_page.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/course/presentation/provider/course_provider.dart';
+import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
 import 'package:hope/features/student/presentation/providers/student_provider.dart';
 import 'package:hope/old/pages/loading_page.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ void main() => runApp(MultiProvider(
         ChangeNotifierProvider(create: (context) => CourseProvider()),
         ChangeNotifierProvider(create: (context) => CoursePageIndexProvider()),
         ChangeNotifierProvider(create: (context) => StudentProvider()),
+        ChangeNotifierProvider(create: (context) => EnrolmentProvider()),
 
       ],
       child: MaterialApp(
