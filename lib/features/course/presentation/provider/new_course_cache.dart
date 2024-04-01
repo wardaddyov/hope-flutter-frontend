@@ -1,7 +1,7 @@
 import 'package:hope/features/course/Dto/course_create_dto.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
-class NewCourseCache {
+class  NewCourseCache {
   static String name = '';
   static String group = '';
   static String semester = '';

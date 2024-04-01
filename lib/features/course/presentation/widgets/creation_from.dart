@@ -30,6 +30,11 @@ class _CreationFormState extends State<CreationForm> {
   @override
   Widget build(BuildContext context) {
 
+
+    nameFieldCustomController.text = NewCourseCache.name;
+    groupFieldCustomController.text = NewCourseCache.group;
+    semesterFieldCustomController.text = NewCourseCache.semester;
+
     void cacheName(){
       NewCourseCache.name = nameFieldCustomController.text;
     }
@@ -63,6 +68,14 @@ class _CreationFormState extends State<CreationForm> {
         customController: semesterFieldCustomController,
         onChanged: () => cacheSemester(),
         prefixIcon: Icon(Icons.clear_all));
+
+    // On widget build set the values of the fields because when you go to select
+    // student page the values are gone
+    // you can also set the cache for updating the student
+
+
+
+
     return Form(
       key: widget.formKey,
       child: Column(
@@ -96,7 +109,6 @@ class ListBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Student> students = context.watch<EnrolmentProvider>().enrolments;
-    print('body built');
     return ListView.builder(
       itemCount: students.length,
       itemBuilder: (context, index) {
@@ -114,7 +126,6 @@ class ListHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('listHeader built');
     return Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
       child: Container(

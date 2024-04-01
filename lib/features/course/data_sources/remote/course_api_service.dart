@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hope/features/course/Dto/course_create_dto.dart';
+import 'package:hope/features/course/model/course.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -9,6 +10,18 @@ class CourseApiService{
   static Future<http.Response> getCoursesRequest() {
     return http.get(
       Uri.parse('http://localhost:5182/api/Course'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+      },
+    );
+  }
+
+  static Future<http.Response> getEnrolmentRequest(courseId) {
+    return http.get(
+      Uri.parse('http://localhost:5182/api/Course/student/$courseId'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': '*/*',
@@ -38,6 +51,50 @@ class CourseApiService{
 
   static Future<http.Response> postEnrolmentsRequest(int courseId,  List<int> studentIds) {
     return http.post(
+      Uri.parse('http://localhost:5182/api/Course/Enrolments/$courseId'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+      },
+      body: jsonEncode(studentIds),
+    );
+  }
+
+  static Future<http.Response> deleteCourseRequest(int courseId) {
+    return http.delete(
+      Uri.parse('http://localhost:5182/api/Course/deleteCourse/$courseId'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+      },
+    );
+  }
+
+  static Future<http.Response> updateCourseRequest(Course updatedCourse) {
+    return http.put(
+      Uri.parse('http://localhost:5182/api/Course/${updatedCourse.id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'id': updatedCourse.id,
+        'name': updatedCourse.name,
+        'activation': updatedCourse.activation,
+        'semester': updatedCourse.semester,
+        'group': updatedCourse.group
+      }),
+    );
+  }
+
+  static Future<http.Response> updateEnrolmentsRequest(int courseId,  List<int> studentIds) {
+    return http.put(
       Uri.parse('http://localhost:5182/api/Course/Enrolments/$courseId'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

@@ -73,14 +73,17 @@ class _CheckBoxState extends State<CheckBox> {
 
   @override
   void initState() {
-    isChecked = context.read<EnrolmentProvider>().enrolments.contains(widget.student) ? true : false;
+    for (var student in context.read<EnrolmentProvider>().enrolments){
+      if (student.studentID == widget.student.studentID){
+        isChecked = true;
+        break;
+      }
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    print('checkBox built');
     return SizedBox(
       width: 250,
       child: Transform.scale(

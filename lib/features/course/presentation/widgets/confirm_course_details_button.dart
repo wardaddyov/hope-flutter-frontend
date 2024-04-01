@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hope/features/course/model/course.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/course/presentation/provider/course_provider.dart';
 import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
@@ -11,6 +12,16 @@ class ConfirmCourseDetailsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var createFailure = Provider.of<CourseProvider>(context).createFailure;
+    var isUpdating = context.read<CourseProvider>().isUpdating;
+    final String buttonText;
+
+    if (isUpdating){
+      buttonText = 'بروزرسانی';
+    }
+    else {
+      buttonText = 'افزودن';
+    }
+
     if (createFailure == null){
       print('waiting for server result');
     }
@@ -30,13 +41,15 @@ class ConfirmCourseDetailsButton extends StatelessWidget {
             var isFormValid = formKey.currentState!.validate();
 
             if (isFormValid){
-              context.read<CourseProvider>().createCourse(NewCourseCache.exportCache(), context.read<EnrolmentProvider>().enrolments);
-
-
-              //EnrolmentProvider.clearEnrolmentList();
-              // context
-              //     .read<CoursePageIndexProvider>()
-              //     .changeSelectedIndex(newIndex: 2);
+              if (!isUpdating) {
+                context.read<CourseProvider>().createCourse(NewCourseCache.exportCache(), context.read<EnrolmentProvider>().enrolments);
+              }
+              else {
+                final courseCreateDto = NewCourseCache.exportCache();
+                final courseId = context.read<CourseProvider>().selectedCourse!.id;
+                final course = Course( id: courseId, name: courseCreateDto.name, activation: courseCreateDto.activation, semester: courseCreateDto.semester, group: courseCreateDto.group);
+                context.read<CourseProvider>().updateCourse(course, context.read<EnrolmentProvider>().enrolments);
+              }
             }
           },
 
@@ -50,7 +63,7 @@ class ConfirmCourseDetailsButton extends StatelessWidget {
                 )),
           ),
           child: Text(
-            'افزودن',
+            buttonText,
             style: TextStyle(color: Colors.white),
           )),
     );

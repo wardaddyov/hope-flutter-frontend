@@ -39,9 +39,16 @@ class CourseRepositoryImpl implements CourseRepository{
   }
 
   @override
-  Future<DataState> updateCourse(Course updatedCourse) {
-    // TODO: implement updateCourse
-    throw UnimplementedError();
+  Future<DataState> updateCourse(Course updatedCourse) async {
+    final httpResponse = await CourseApiService.updateCourseRequest(updatedCourse);
+
+    print(httpResponse.statusCode);
+
+    if (httpResponse.statusCode == HttpStatus.ok){
+      return DataSuccess(httpResponse.body);
+    } else {
+      return DataFailed();
+    }
   }
 
   @override
@@ -52,7 +59,6 @@ class CourseRepositoryImpl implements CourseRepository{
     }
 
     final httpResponse = await CourseApiService.postEnrolmentsRequest(courseId, ids);
-    print(httpResponse.body);
 
     if (httpResponse.statusCode == HttpStatus.ok){
       return DataSuccess(httpResponse.body);
@@ -62,9 +68,42 @@ class CourseRepositoryImpl implements CourseRepository{
   }
 
   @override
-  Future<DataState> deleteCourse(int id) {
-    // TODO: implement deleteCourse
-    throw UnimplementedError();
+  Future<DataState> deleteCourse(Course course) async {
+    final httpResponse = await CourseApiService.deleteCourseRequest(course.id!);
+    if (httpResponse.statusCode == HttpStatus.noContent){
+      return DataSuccess(httpResponse.body);
+    } else {
+    return DataFailed();
+    }
+  }
+
+  @override
+  Future<DataState<List<Student>>> getEnrolments(Course course) async {
+    final httpResponse = await CourseApiService.getEnrolmentRequest(course.id);
+
+    if (httpResponse.statusCode == HttpStatus.ok){
+      return DataSuccess((await Student.convertJsonToStudents(json.decode(httpResponse.body))));
+    } else {
+    return DataFailed();
+    }
+  }
+
+  @override
+  Future<DataState> updateEnrolments(int courseId, List<Student> students) async {
+    List<int> ids = [];
+    for (Student student in students){
+      ids.add(student.id!);
+    }
+
+    final httpResponse = await CourseApiService.updateEnrolmentsRequest(courseId, ids);
+
+    print(httpResponse.body);
+
+    if (httpResponse.statusCode == HttpStatus.ok){
+      return DataSuccess(httpResponse.body);
+    } else {
+      return DataFailed();
+    }
   }
 
 }

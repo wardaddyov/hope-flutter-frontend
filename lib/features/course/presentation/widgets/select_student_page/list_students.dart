@@ -43,7 +43,7 @@ class ListStudents extends StatelessWidget {
     } else {
       bodyWidget = Text('unknown');
     }
-    print('page built');
+
     return Column(
       children: [
         SizedBox(
@@ -71,7 +71,6 @@ class SecondaryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('secondaryHeader built');
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
       child: Row(
@@ -106,7 +105,6 @@ class ListBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('body built');
     return ListView.builder(
       itemCount: students.length,
       itemBuilder: (context, index) {
@@ -124,7 +122,7 @@ class ListHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('listHeader built');
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 0),
       child: Container(

@@ -6,6 +6,7 @@ import 'package:hope/features/student/models/student.dart';
 
 class EnrolmentProvider extends ChangeNotifier
 {
+  CourseRepositoryImpl courseRepositoryImpl = CourseRepositoryImpl();
   List<Student> enrolments = [];
   bool? postFailed;
 
@@ -19,7 +20,6 @@ class EnrolmentProvider extends ChangeNotifier
   }
 
   void postEnrolment(int courseId, List<Student> students) async {
-    CourseRepositoryImpl courseRepositoryImpl = CourseRepositoryImpl();
 
     //await Future.delayed(Duration(seconds: 2));
     final dataState = await courseRepositoryImpl.createEnrolments(courseId, students);
@@ -35,11 +35,24 @@ class EnrolmentProvider extends ChangeNotifier
     notifyListeners();
   }
 
-  void clearEnrolmentList(){
-    enrolments = [];
+  void getEnrolments(Course course,) async {
+
+
+    //await Future.delayed(Duration(seconds: 2));
+    final dataState = await courseRepositoryImpl.getEnrolments(course);
+
+    if (dataState is DataSuccess){
+      enrolments = dataState.data!;
+    }
+
+    if (dataState is DataFailed){
+      postFailed = true;
+    }
+
+    notifyListeners();
   }
 
-  List<Student> getEnrolments(){
-    return enrolments;
+  void clearEnrolmentList(){
+    enrolments = [];
   }
 }

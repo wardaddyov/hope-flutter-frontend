@@ -6,9 +6,11 @@ import 'package:hope/features/student/models/student.dart';
 abstract class CourseRepository{
   Future<DataState<List<Course>>> getCourses();
   Future<DataState<Course>> getCourse();
+  Future<DataState<List<Student>>> getEnrolments(Course course);
   Future<DataState> createCourse(CourseCreateDto courseCreateDto);
   Future<DataState> createEnrolments(int courseId, List<Student> students);
   Future<DataState> updateCourse(Course updatedCourse);
-  Future<DataState> deleteCourse(int id);
+  Future<DataState> updateEnrolments(int courseId, List<Student> students);
+  Future<DataState> deleteCourse(Course course);
 
 }

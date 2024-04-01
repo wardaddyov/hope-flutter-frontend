@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope/core/widgets/dashboard_container_header.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
+import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
+import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 import 'package:hope/features/course/presentation/widgets/creation_from.dart';
 import 'package:hope/features/course/presentation/widgets/confirm_course_details_button.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +41,9 @@ class CancelButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
+        NewCourseCache.resetNewCourseCache();
+        context.read<EnrolmentProvider>().clearEnrolmentList();
+
         context
             .read<CoursePageIndexProvider>()
             .changeSelectedIndex(newIndex: 0);
