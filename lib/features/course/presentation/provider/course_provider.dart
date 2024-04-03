@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hope/core/resources/data_state.dart';
 import 'package:hope/features/course/Dto/course_create_dto.dart';
+import 'package:hope/features/course/interfaces/course_repository.dart';
 import 'package:hope/features/course/model/course.dart';
 import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 import 'package:hope/features/course/repository/course_repository_impl.dart';
 import 'package:hope/features/student/models/student.dart';
+import 'package:hope/locater.dart';
 
 class CourseProvider extends ChangeNotifier{
   List<Course>? courses;
@@ -13,8 +15,9 @@ class CourseProvider extends ChangeNotifier{
   bool? deleteFailed;
   bool? updateFailure;
   bool isUpdating = false;
-  CourseRepositoryImpl courseRepositoryImpl = CourseRepositoryImpl();
   Course? selectedCourse;
+
+  CourseRepository courseRepositoryImpl = getIt<CourseRepository>();
 
   void getCourses() async {
 

@@ -3,7 +3,7 @@ import 'package:hope/features/course/Dto/course_create_dto.dart';
 import 'package:hope/features/course/model/course.dart';
 import 'package:hope/features/student/models/student.dart';
 
-abstract class CourseRepository{
+abstract interface class CourseRepository{
   Future<DataState<List<Course>>> getCourses();
   Future<DataState<Course>> getCourse();
   Future<DataState<List<Student>>> getEnrolments(Course course);

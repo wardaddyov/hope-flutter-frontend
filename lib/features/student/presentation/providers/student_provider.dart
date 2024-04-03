@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hope/core/resources/data_state.dart';
 import 'package:hope/features/student/dto/student_create_dto.dart';
+import 'package:hope/features/student/interfaces/student_repository.dart';
 import 'package:hope/features/student/models/student.dart';
 import 'package:hope/features/student/repository/student_repository_impl.dart';
+import 'package:hope/locater.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class StudentProvider extends ChangeNotifier {
@@ -13,7 +15,7 @@ class StudentProvider extends ChangeNotifier {
   bool? createFailure;
   bool? updateFailure;
 
-  StudentRepositoryImpl studentRepositoryImpl = StudentRepositoryImpl();
+  StudentRepository studentRepositoryImpl = getIt<StudentRepository>();
 
   void getStudent() async {
 
