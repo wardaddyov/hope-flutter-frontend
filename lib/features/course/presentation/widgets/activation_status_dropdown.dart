@@ -16,7 +16,7 @@ class _ActivationStatusDropdownState extends State<ActivationStatusDropdown> {
   Widget build(BuildContext context) {
 
 
-    var _items = ['فعال', 'غیرفعال'];
+    List<String> _items = ['فعال', 'غیرفعال'];
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

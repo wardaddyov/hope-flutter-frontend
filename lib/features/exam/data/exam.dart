@@ -1,4 +1,5 @@
-class Exam{
+
+class Exam {
   int id;
   String name;
   DateTime date;
@@ -11,6 +12,35 @@ class Exam{
   int? questionId;
   int? answerId;
   int courseId;
+
+  Exam(
+      {required this.id,
+      required this.name,
+      required this.date,
+      required this.isExercise,
+      required this.isOpenBook,
+      required this.isFileAccessible,
+      required this.availableScore,
+      required this.type,
+      required this.description,
+      required this.questionId,
+      required this.courseId,
+      required this.answerId});
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'date': date,
+    'isExercise': isExercise,
+    'isOpenBook': isOpenBook,
+    'isFileAccessible': isFileAccessible,
+    'availableScore': availableScore,
+    'type': type,
+    'description': description,
+    'questionId': questionId,
+    'answerId': answerId,
+    'courseId': courseId
+  };
 
   Exam.fromJson(Map<String, dynamic> json)
       : id = json['id'] as int,

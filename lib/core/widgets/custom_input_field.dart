@@ -46,6 +46,7 @@ class CustomInputField extends StatelessWidget {
         width: width,
         height: height,
         child: TextFormField(
+
           validator: (s) {
             if (s!.isWhitespace() && isRequired) {
               return "این قسمت نمی‌تواند خالی باشد";

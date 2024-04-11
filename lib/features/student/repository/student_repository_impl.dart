@@ -11,7 +11,6 @@ class StudentRepositoryImpl implements StudentRepository{
   @override
   Future<DataState> createStudent(StudentCreateDto studentCreateDto) async {
     final httpResponse = await StudentApiService.addStudentRequest(studentCreateDto);
-    print(httpResponse.body);
     if (httpResponse.statusCode == HttpStatus.ok){
       return DataSuccess(httpResponse.body);
     } else {

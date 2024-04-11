@@ -12,6 +12,7 @@ import 'package:hope/features/course/presentation/widgets/list_course.dart';
 import 'package:hope/features/course/presentation/widgets/create_course.dart';
 import 'package:hope/features/course/presentation/widgets/creation_from.dart';
 import 'package:hope/features/course/presentation/widgets/select_student_page/list_students.dart';
+import 'package:hope/features/exam/presentation/pages/create_exam_page.dart';
 import 'package:hope/old/pages/dashboard/student/get_students.dart';
 
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -35,7 +36,7 @@ class CoursePage extends StatelessWidget {
     switch (selectedIndex) {
       // Get courses
       case 0:
-        body = CourseList();
+        body = CreateExamPage();//CourseList();//
       // Add courses
       case 1:
         body = CreateCourse();
