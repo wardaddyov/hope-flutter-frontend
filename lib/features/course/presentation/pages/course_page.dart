@@ -13,6 +13,7 @@ import 'package:hope/features/course/presentation/widgets/create_course.dart';
 import 'package:hope/features/course/presentation/widgets/creation_from.dart';
 import 'package:hope/features/course/presentation/widgets/select_student_page/list_students.dart';
 import 'package:hope/features/exam/presentation/pages/create_exam_page.dart';
+import 'package:hope/features/exam/presentation/pages/exam_dashboard_page.dart';
 import 'package:hope/old/pages/dashboard/student/get_students.dart';
 
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -36,7 +37,7 @@ class CoursePage extends StatelessWidget {
     switch (selectedIndex) {
       // Get courses
       case 0:
-        body = CreateExamPage();//CourseList();//
+        body = CourseList();//CreateExamPage();//
       // Add courses
       case 1:
         body = CreateCourse();
@@ -46,6 +47,8 @@ class CoursePage extends StatelessWidget {
       // Select courses
       case 3:
         body = CourseDashboard();
+      case 4:
+        body = ExamDashboardPage();
 
       default:
         throw UnimplementedError('no widget for $selectedIndex');

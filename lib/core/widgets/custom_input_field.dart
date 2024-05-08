@@ -12,7 +12,13 @@ class CustomInputField extends StatelessWidget {
       required this.prefixIcon,
       this.helperText = '',
       this.isRequired = true,
-      this.minAmountOfChars = 0, this.maxAmountOfChars = 50, this.isNumber = false, this.customController, this.onChanged, this.width = 400, this.height});
+      this.minAmountOfChars = 0,
+      this.maxAmountOfChars = 50,
+      this.isNumber = false,
+      this.customController,
+      this.onChanged,
+      this.width = 400,
+      this.height,});
 
   TextEditingController controller = TextEditingController();
   final bool isRequired;
@@ -27,17 +33,37 @@ class CustomInputField extends StatelessWidget {
   final double? height;
   TextEditingController? customController;
   Function? onChanged;
-
+  void Function(String value)? onSaved;
 
   @override
   Widget build(BuildContext context) {
 
-    if (customController != null){
+    if (customController != null) {
       controller = customController!;
     }
 
-    if (onChanged != null){
+    if (onChanged != null) {
       controller.addListener(() => onChanged!());
+    }
+
+    String? Vaidator(String s){
+      print('InBody');
+      if (s!.isWhitespace() && isRequired) {
+        print('notext');
+        return "این قسمت نمی‌تواند خالی باشد";
+      }
+      if (isRequired &&
+          isNumber &&
+          !RegExp(r'^[0-9]+$').hasMatch(s.toEnglishDigit())) {
+        return "در این قسمت تنها عدد مجاز است";
+      }
+      if (s.isLong(maxAmountOfChars)) {
+        return 'تعداد کاراکتر وارد شده بیشتر از حد مجاز';
+      }
+      if (s.isShort(minAmountOfChars)) {
+        return 'تعداد کاراکتر وارد شده کمتر از حد مجاز';
+      }
+      return null;
     }
 
     return Padding(
@@ -46,22 +72,8 @@ class CustomInputField extends StatelessWidget {
         width: width,
         height: height,
         child: TextFormField(
-
-          validator: (s) {
-            if (s!.isWhitespace() && isRequired) {
-              return "این قسمت نمی‌تواند خالی باشد";
-            }
-            if (isRequired && isNumber && !RegExp(r'^[0-9]+$').hasMatch(s.toEnglishDigit())){
-              return "در این قسمت تنها عدد مجاز است";
-            }
-            if (s.length > maxAmountOfChars){
-              return 'تعداد کاراکتر وارد شده بیشتر از حد مجاز';
-            }
-            if (s.length < minAmountOfChars){
-              return 'تعداد کاراکتر وارد شده کمتر از حد مجاز';
-            }
-            return null;
-          },
+          validator: (s) => Vaidator(s!),
+          onSaved: (value) {onSaved != null ? onSaved!(value!) : '';},
           controller: controller,
           decoration: InputDecoration(
             helperText: helperText,
@@ -69,7 +81,6 @@ class CustomInputField extends StatelessWidget {
             labelText: labelText,
             prefixIcon: prefixIcon,
           ),
-
         ),
       ),
     );

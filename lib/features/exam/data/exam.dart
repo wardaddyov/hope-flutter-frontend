@@ -30,29 +30,29 @@ class Exam {
   Map<String, dynamic> toJson() => {
     'id': id,
     'name': name,
-    'date': date,
+    'date': date.toIso8601String(),
     'isExercise': isExercise,
     'isOpenBook': isOpenBook,
     'isFileAccessible': isFileAccessible,
     'availableScore': availableScore,
     'type': type,
     'description': description,
-    'questionId': questionId,
-    'answerId': answerId,
+    'questionId': null,
+    'answerId': null,
     'courseId': courseId
   };
 
   Exam.fromJson(Map<String, dynamic> json)
       : id = json['id'] as int,
         name = json['name'] as String,
-        date = json['date'] as DateTime,
+        date = DateTime.parse(json['date']) as DateTime,
         isExercise = json['isExercise'] as bool,
         isOpenBook = json['isOpenBook'] as bool,
-        isFileAccessible = json['isFileAccessible'] as bool,
+        isFileAccessible = json['fileAccessible'] as bool,
         description = json['description'] as String,
         availableScore = json['availableScore'] as int,
         type = json['type'] as int,
-        questionId = json['questionId'] as int,
-        answerId = json['answerId'] as int,
+        questionId = json['questionId'],
+        answerId = json['answerId'],
         courseId = json['courseId'] as int;
 }

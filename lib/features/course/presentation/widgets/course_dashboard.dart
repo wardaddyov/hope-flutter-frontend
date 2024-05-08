@@ -1,11 +1,18 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hope/core/widgets/dashboard_container_header.dart';
 import 'package:hope/features/course/model/course.dart';
+import 'package:hope/features/course/presentation/bloc/get_exam_bloc.dart';
+import 'package:hope/features/course/presentation/bloc/get_exam_bloc.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/course/presentation/provider/course_provider.dart';
 import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
 import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
+import 'package:hope/features/course/presentation/widgets/exam_item.dart';
+import 'package:hope/features/exam/data/exam.dart';
 import 'package:provider/provider.dart';
 
 class CourseDashboard extends StatelessWidget {
@@ -14,9 +21,49 @@ class CourseDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final course = context.read<CourseProvider>().selectedCourse!;
+
     return Column(
       children: [
-        DashboardContainerHeader(title: course.name, leftElement: ActionButtons())
+        DashboardContainerHeader(
+            title: course.name, leftElement: ActionButtons()),
+
+        BlocBuilder<GetExamBloc, GetExamState>(
+          builder: (context, state) {
+            if (state is GetExamInitial) {
+              return SizedBox(
+                height: 20,
+                width: 20,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.red,
+                    strokeWidth: 1,
+                  ),
+                ),
+              );
+            }
+            if (state is GetExamSuccessful) {
+              return SizedBox(
+
+                width: 400,
+                height: 184,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.exams.length,
+                  itemBuilder: (context, index) {
+                    return ExamItem(
+                      exam: state.exams[index],
+                    );
+                  },
+                ),
+              );
+            }
+
+            if (state is GetExamFailure) {
+              return Text(state.error,);
+            }
+            return Text("unknown");
+          },
+        ),
       ],
     );
   }
@@ -31,14 +78,15 @@ class ActionButtons extends StatelessWidget {
       children: [
         EditCourseButton(),
         DeleteCourseButton(),
-        SizedBox(width: 6,),
+        SizedBox(
+          width: 6,
+        ),
         Separator(),
         BackToListButton(),
       ],
     );
   }
 }
-
 
 class EditCourseButton extends StatelessWidget {
   const EditCourseButton({super.key});
@@ -49,16 +97,17 @@ class EditCourseButton extends StatelessWidget {
 
     return IconButton(
         onPressed: () {
-
           NewCourseCache.name = course.name;
           NewCourseCache.group = course.group.toString();
           NewCourseCache.semester = course.semester.toString();
-          NewCourseCache.activationStatus = course.activation ? 'فعال' : 'غیرفعال';
+          NewCourseCache.activationStatus =
+              course.activation ? 'فعال' : 'غیرفعال';
           context.read<CourseProvider>().isUpdating = true;
           context.read<EnrolmentProvider>().getEnrolments(course);
 
-          context.read<CoursePageIndexProvider>().changeSelectedIndex(newIndex: 1);
-
+          context
+              .read<CoursePageIndexProvider>()
+              .changeSelectedIndex(newIndex: 1);
         },
         icon: SvgPicture.asset(
           'assets/PenNewSquare.svg',
@@ -69,13 +118,16 @@ class EditCourseButton extends StatelessWidget {
 
 class DeleteCourseButton extends StatelessWidget {
   const DeleteCourseButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     final course = context.read<CourseProvider>().selectedCourse!;
     return IconButton(
         onPressed: () {
           context.read<CourseProvider>().deleteCourse(course);
-          context.read<CoursePageIndexProvider>().changeSelectedIndex(newIndex: 0);
+          context
+              .read<CoursePageIndexProvider>()
+              .changeSelectedIndex(newIndex: 0);
         },
         icon: SvgPicture.asset(
           'assets/closeSquare.svg',
@@ -91,7 +143,9 @@ class BackToListButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
-          context.read<CoursePageIndexProvider>().changeSelectedIndex(newIndex: 0);
+          context
+              .read<CoursePageIndexProvider>()
+              .changeSelectedIndex(newIndex: 0);
         },
         icon: SvgPicture.asset(
           width: 18,
