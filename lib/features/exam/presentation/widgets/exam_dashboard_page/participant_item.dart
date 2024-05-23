@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hope/features/exam/data/participant.dart';
+import 'package:hope/features/exam/data/models/participant.dart';
 
 class ParticipantItem extends StatelessWidget {
   const ParticipantItem({super.key, required this.participant});

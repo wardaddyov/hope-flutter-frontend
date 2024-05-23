@@ -28,7 +28,6 @@ class EditButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return IconButton(
         onPressed: () {
 
@@ -46,9 +45,7 @@ class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         icon: SvgPicture.asset(
           'assets/closeSquare.svg',
           semanticsLabel: 'delete student',

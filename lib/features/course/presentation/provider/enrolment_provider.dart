@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hope/core/resources/data_state.dart';
-import 'package:hope/features/course/model/course.dart';
-import 'package:hope/features/course/repository/course_repository_impl.dart';
-import 'package:hope/features/student/models/student.dart';
+import 'package:hope/features/course/data/Models/course.dart';
+import 'package:hope/features/course/data/Repository/course_repository_impl.dart';
+import 'package:hope/features/student/data/models/student.dart';
 
 class EnrolmentProvider extends ChangeNotifier
 {

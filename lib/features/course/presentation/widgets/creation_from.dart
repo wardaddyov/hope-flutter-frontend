@@ -8,11 +8,10 @@ import 'package:hope/core/widgets/custom_input_field.dart';
 import 'package:hope/core/widgets/custom_text_box.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
-import 'package:hope/features/student/models/student.dart';
+import 'package:hope/features/student/data/models/student.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:provider/provider.dart';
 
-import 'confirm_course_details_button.dart';
 
 class CreationForm extends StatefulWidget {
   CreationForm({super.key, required this.formKey});

@@ -1,12 +1,10 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hope/core/themes/custom_colors.dart';
-import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
 
 import 'package:provider/provider.dart';
 
-import '../features/student/models/student.dart';
+import '../features/student/data/models/student.dart';
 
 import '../features/student/presentation/providers/student_page_index_provider.dart';
 import '../features/student/presentation/providers/select_student.dart';

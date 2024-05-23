@@ -8,7 +8,7 @@ import 'package:hope/features/login/presentation/widgets/login_form.dart';
 import 'package:hope/features/login/presentation/widgets/login_page_svgs.dart';
 import 'package:hope/features/login/presentation/widgets/password_field.dart';
 import 'package:hope/features/login/presentation/widgets/username_field.dart';
-import 'package:hope/old/pages/loading_page.dart';
+import 'package:hope/features/loading/loading_page.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {

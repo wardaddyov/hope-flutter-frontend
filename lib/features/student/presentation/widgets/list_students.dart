@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hope/features/student/presentation/widgets/create_student_button.dart';
 import 'package:hope/core/widgets/custom_text_box.dart';
-import 'package:hope/components/list_item.dart';
 import 'package:hope/core/widgets/dashboard_container_header.dart';
 import 'package:hope/features/course/presentation/widgets/loading_circle.dart';
-import 'package:hope/features/student/models/student.dart';
+import 'package:hope/features/student/data/models/student.dart';
 import 'package:hope/features/student/presentation/providers/student_provider.dart';
 import 'package:hope/features/student/presentation/widgets/search_input_field.dart';
 import 'package:hope/features/student/presentation/widgets/sorting_option_widget.dart';
-import 'package:hope/features/student/presentation/widgets/sorting_option_dropdown.dart';
 import 'package:hope/features/student/presentation/widgets/student_item.dart';
 import 'package:provider/provider.dart';
 

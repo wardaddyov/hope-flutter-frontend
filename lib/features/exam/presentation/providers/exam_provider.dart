@@ -1,4 +1,4 @@
-import 'package:hope/features/exam/data/exam.dart';
+import 'package:hope/features/exam/data/models/exam.dart';
 
 class ExamProvider{
   static Exam? exam;

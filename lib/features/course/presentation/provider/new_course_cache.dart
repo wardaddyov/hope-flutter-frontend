@@ -1,4 +1,4 @@
-import 'package:hope/features/course/Dto/course_create_dto.dart';
+import 'package:hope/features/course/data/Models/course_create_dto.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class  NewCourseCache {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hope/core/widgets/dashboard_container_header.dart';
 import 'package:hope/core/widgets/dashboard_header_counter_text.dart';
-import 'package:hope/features/exam/presentation/providers/create_exam_bloc/create_exam_bloc.dart';
+import 'package:hope/features/exam/domain/create_exam_bloc/create_exam_bloc.dart';
 import 'package:hope/features/exam/presentation/widgets/create_exam_page/cancel_button.dart';
 import 'package:hope/features/exam/presentation/widgets/create_exam_page/date_field.dart';
 import 'package:hope/features/exam/presentation/widgets/create_exam_page/description_field.dart';
@@ -12,7 +12,6 @@ import 'package:hope/features/exam/presentation/widgets/create_exam_page/openboo
 import 'package:hope/features/exam/presentation/widgets/create_exam_page/question_type_dropdown.dart';
 import 'package:hope/features/exam/presentation/widgets/create_exam_page/score_field.dart';
 import 'package:hope/features/exam/presentation/widgets/create_exam_page/submit_button.dart';
-import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class CreateExamPage extends StatelessWidget {
   CreateExamPage({super.key});

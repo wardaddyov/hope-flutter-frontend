@@ -1,8 +1,8 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hope/core/themes/custom_colors.dart';
-import 'package:hope/features/exam/data/exam.dart';
-import 'package:hope/features/exam/presentation/providers/create_exam_bloc/create_exam_bloc.dart';
+import 'package:hope/features/exam/domain/create_exam_bloc/create_exam_bloc.dart';
 import 'package:hope/features/exam/presentation/providers/new_exam_cache.dart';
 
 class SubmitButton extends StatelessWidget {
@@ -20,7 +20,6 @@ class SubmitButton extends StatelessWidget {
 
           if (formIsValid) {
             formKey.currentState!.save();
-            NewExamCache().courseId = 2;
             context.read<CreateExamBloc>().add(RequestCreateExam(
                 exam: NewExamCache().exportCache()));
           }
@@ -33,7 +32,7 @@ class SubmitButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           )),
         ),
-        child: BlocBuilder<CreateExamBloc, CreateExamState>(
+        child: BlocConsumer<CreateExamBloc, CreateExamState>(
           builder: (context, state) {
             if (state is CreateExamInitial) {
               return Text(
@@ -52,25 +51,26 @@ class SubmitButton extends StatelessWidget {
                   ),
                 ),
               );
-            }
-            if (state is CreateExamSuccessful) {
-              return Text(
-                "افزودن",
-                style: TextStyle(color: Colors.green),
-              );
-            }
-            if (state is CreateExamFailure) {
-              return Text(
-                "افزودن",
-                style: TextStyle(color: Colors.red),
-              );
             } else {
               return Text(
                 "افزودن",
                 style: TextStyle(color: Colors.white),
               );
             }
-          },
+          }, listener: (BuildContext context, CreateExamState state) {
+            if (state is CreateExamSuccessful){
+              AnimatedSnackBar.material(
+                'آزمون با موفقیت افزوده شد',
+                type: AnimatedSnackBarType.success,
+              ).show(context);
+            }
+            if (state is CreateExamFailure){
+              AnimatedSnackBar.material(
+                'خطا در افزودن آزمون',
+                type: AnimatedSnackBarType.error,
+              ).show(context);
+            }
+        },
         ),
       ),
     );

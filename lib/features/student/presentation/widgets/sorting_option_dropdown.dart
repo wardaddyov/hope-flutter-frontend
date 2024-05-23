@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hope/core/themes/my_input_theme.dart';
-import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 import 'package:hope/features/student/presentation/providers/student_provider.dart';
 import 'package:provider/provider.dart';
 

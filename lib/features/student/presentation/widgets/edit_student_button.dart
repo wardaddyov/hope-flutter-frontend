@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hope/features/student/models/student.dart';
+import 'package:hope/features/student/data/models/student.dart';
 import 'package:hope/features/student/presentation/providers/select_student.dart';
 import 'package:hope/features/student/presentation/providers/student_page_index_provider.dart';
 import 'package:provider/provider.dart';

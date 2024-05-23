@@ -3,12 +3,7 @@ import 'package:hope/components/custom_button.dart';
 import 'package:hope/features/dashboard/presentation/widgets/dashboard_main_container.dart';
 import 'package:hope/core/widgets/logo.dart';
 import 'package:hope/features/course/presentation/pages/course_page.dart';
-import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
 import 'package:hope/features/student/presentation/pages/student_page.dart';
-import 'package:hope/features/student/presentation/providers/student_page_index_provider.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../old/pages/dashboard/student/student_dashboard.dart';
 
 class DashboardTemplate extends StatefulWidget {
   const DashboardTemplate({super.key});

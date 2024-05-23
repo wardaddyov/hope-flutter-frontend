@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hope/core/themes/custom_colors.dart';
-import 'package:hope/features/student/models/student.dart';
+import 'package:hope/features/student/data/models/student.dart';
 import 'package:hope/features/student/presentation/providers/student_provider.dart';
 import 'package:provider/provider.dart';
 

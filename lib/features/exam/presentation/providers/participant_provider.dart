@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:hope/features/exam/data/participant.dart';
+import 'package:hope/features/exam/data/models/participant.dart';
 
 class ParticipantsProvider{
   static List<Participant>? _participants;

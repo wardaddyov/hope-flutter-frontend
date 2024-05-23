@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'package:hope/features/exam/data/exam.dart';
-import 'package:hope/features/exam/data/participant.dart';
+import 'package:hope/features/exam/data/models/exam.dart';
 import 'package:http/http.dart' as http;
 
 class ExamApiService{

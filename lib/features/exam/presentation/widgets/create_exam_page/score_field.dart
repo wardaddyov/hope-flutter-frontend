@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hope/core/resources/field_validator.dart';
-import 'package:hope/core/widgets/custom_input_field.dart';
 import 'package:hope/features/exam/presentation/providers/new_exam_cache.dart';
 
 class ExamScoreField extends StatelessWidget {

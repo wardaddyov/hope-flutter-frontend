@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hope/core/themes/custom_colors.dart';
 import 'package:hope/features/course/presentation/provider/course_page_index_provider.dart';
-import 'package:hope/features/exam/data/exam.dart';
+import 'package:hope/features/exam/data/models/exam.dart';
+import 'package:hope/features/exam/domain/get_participants_bloc/get_participants_bloc.dart';
 import 'package:hope/features/exam/presentation/providers/exam_provider.dart';
-import 'package:hope/features/exam/presentation/providers/get_participants_bloc/get_participants_bloc.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 

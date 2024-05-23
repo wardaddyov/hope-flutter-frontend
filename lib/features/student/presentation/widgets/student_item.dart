@@ -1,15 +1,11 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hope/core/themes/custom_colors.dart';
-import 'package:hope/features/course/presentation/provider/enrolment_provider.dart';
-import 'package:hope/features/student/models/student.dart';
+import 'package:hope/features/student/data/models/student.dart';
 import 'package:hope/features/student/presentation/widgets/delete_student_button.dart';
 import 'package:hope/features/student/presentation/widgets/edit_student_button.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
-import 'package:provider/provider.dart';
 
 import '../../../../core/widgets/custom_text_box.dart';
 

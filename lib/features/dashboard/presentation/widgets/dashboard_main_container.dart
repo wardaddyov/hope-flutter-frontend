@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hope/core/widgets/custom_text_box.dart';
-import 'package:hope/components/list_item.dart';
 import 'package:hope/core/themes/custom_colors.dart';
 
 class DashboardMainContainer extends StatelessWidget {

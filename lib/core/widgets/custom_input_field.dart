@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hope/core/resources/string_extensions.dart';
-import 'package:hope/features/course/presentation/provider/new_course_cache.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class CustomInputField extends StatelessWidget {

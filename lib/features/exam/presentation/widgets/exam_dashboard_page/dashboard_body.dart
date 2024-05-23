@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hope/features/exam/presentation/providers/get_participants_bloc/get_participants_bloc.dart';
+import 'package:hope/features/exam/domain/get_participants_bloc/get_participants_bloc.dart';
 import 'package:hope/features/exam/presentation/widgets/exam_dashboard_page/participant_item.dart';
 
 class ExamDashboardBody extends StatelessWidget {
